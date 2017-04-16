@@ -3,8 +3,10 @@ using namespace std;
 
 int main(){
   int n;
-  while(cin >> n && n){
-    int arr[100];
+  int arr[15000];
+  while(cin >> n){
+    if( n == 0)
+      break;
 
     for(int i = 0; i < n; i++){
       cin >> arr[i];
@@ -19,34 +21,21 @@ int main(){
     }
 
     if( n > 2) {
-      int sum = 0;
-      for(int i = 0; i < n; i++){
-        int small = 0;
-        int big = 0;
-        for(int k = 0; k < n; k++){
-          if(i == k) continue;
-          if(arr[k] < arr[i]){
-            small += 1;
-          } else {
-            big += 1;
-          }
-        }
-        if( n % 2 != 0){
-          // 奇数
-          // cout << i << ' ' << small << ' ' << big << endl;
-          if(small == big){
-            cout << arr[i] << endl;
-            break;
-          }
-        } else {
-          // 偶数
-          if(small == big + 1 || small == big - 1){
-            sum += arr[i];
+      int temp = 0;
+      for(int i = 0; i < n - 1; i++){
+        for(int j = 0; j < n - 1 - i; j++){
+          if(arr[j] > arr[j+1]){
+            temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp; 
           }
         }
       }
+
       if( n % 2 == 0){
-        cout << sum / 2 << endl;
+        cout << (arr[n/2-1] + arr[n/2]) / 2 << endl;
+      } else {
+        cout << arr[n/2] << endl;
       }
     }
   }
