@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
   int year;
-  cin >> year)
+  cin >> year;
   if( year % 4 == 0){
     if(year % 100 == 0 && (year % 3200 == 0 || year % 400 != 0)){
       cout << 'N' << endl;
