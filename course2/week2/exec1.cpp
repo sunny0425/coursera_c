@@ -3,20 +3,21 @@ using namespace std;
 
 int main(){
   int arr[100];
-  int n = 0;
-  while(cin >> n){
-    int flag = 0;
-    for(int i = 0; i < n; i++){
-      cin >> arr[i];
-      if( i == arr[i]){
-        cout << i << endl;
-        flag = 1;
-        break;
-      }
+  int n;
+  bool isCout = false;
+  cin >> n;
+
+  
+  for(int i = 0; i < n; i++){
+    cin >> arr[i];
+    if( i == arr[i]){
+      cout << i;
+      isCout = true;
+      break;
     }
-    if(flag == 0)
-      cout << 'N' << endl;
   }
+  if(!isCout)
+    cout << 'N';
 
   return 0;
 }
