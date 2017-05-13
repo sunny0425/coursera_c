@@ -39,32 +39,23 @@ bool IsLastDayOfMonth(int year, int month, int day){
 }
 
 int main(){
-  char year[5], month[3], day[3];
+  int year, month, day;
+  scanf("%d-%d-%d", &year, &month, &day);
 
-  cin.getline(year, 5, '-');
-  cin.getline(month, 3, '-');
-  cin.getline(day, 3, '-');
-
-  int iyear = atoi(year);
-  int imonth = atoi(month);
-  int iday = atoi(day);
-
-  if(IsLastDayOfMonth(iyear, imonth, iday)){
-    if(imonth == 12){
-      iyear += 1;
-      imonth = 1;
-      iday = 1;
+  if(IsLastDayOfMonth(year, month, day)){
+    if(month == 12){
+      year += 1;
+      month = 1;
+      day = 1;
     } else {
-      imonth += 1;
-      iday = 1;
+      month += 1;
+      day = 1;
     }
   } else {
-    iday += 1;
+    day += 1;
   }
-  cout << iyear << '-';
-  cout << setfill('0') << setw(2);
-  cout << imonth << '-';
-  cout << setfill('0') << setw(2); 
-  cout << iday << endl;
+
+  printf("%d-%02d-%02d\n", year, month, day);
+  
   return 0;
 }
