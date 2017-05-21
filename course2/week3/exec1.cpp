@@ -2,9 +2,11 @@
 #include <cstring>
 using namespace std;
 
-int overturn(char str[501], int x, int y){
+char str[502];
+
+int overturn(int x, int y){
   if( x < y){
-    overturn(str, x+1, y);
+    overturn(x+1, y);
     cout << str[x];
   } else if( x == y){
     cout << str[x];
@@ -14,8 +16,7 @@ int overturn(char str[501], int x, int y){
 }
 
 int main(){
-  char str[501];
-  cin.getline(str, 500);
+  cin.getline(str, 501);
 
   int len = strlen(str);
 
@@ -23,10 +24,10 @@ int main(){
   int y;
 
   for(int i = 0; i < len+1; i++){
-    if(str[i] == ' ' || str[i] == '\0' || str[i] = '\t'){
+    if(str[i] == ' ' || str[i] == '\0'){
       y = i;
       if( x != y){
-        overturn(str, x, y-1);
+        overturn(x, y-1);
       }
       cout << str[i];
       x = i + 1;
