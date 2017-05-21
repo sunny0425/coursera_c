@@ -1,38 +1,33 @@
-#include <iostream>
-#include <cstring>
+#include<iostream>
 using namespace std;
 
-char str[502];
+int i = 0;
+char input[501];
 
-int overturn(int x, int y){
-  if( x < y){
-    overturn(x+1, y);
-    cout << str[x];
-  } else if( x == y){
-    cout << str[x];
+int recur() {
+  char c = input[i];
+  i++;
+  if (c == ' ') {
+    return 1;
   }
-
-  return 0;
+  if (c != ' '&&c != '\0') {
+    recur();
+    cout << c;
+  }
+  return 1;
 }
 
-int main(){
-  cin.getline(str, 501);
+int main() {
+  cin.getline(input, 501);
+  if (recur() == 1)//只有最外面一层的recur函数才会有返回值到这里，所以可以放心的打‘ ’
+    cout << ' ';
+  while (input[i] != '\0') {
+    if (recur() == 1)//每次遇到空格，都会返回1，所以打印一个空格
+      cout << ' ';
 
-  int len = strlen(str);
-
-  int x = 0;
-  int y;
-
-  for(int i = 0; i < len+1; i++){
-    if(str[i] == ' ' || str[i] == '\0'){
-      y = i;
-      if( x != y){
-        overturn(x, y-1);
-      }
-      cout << str[i];
-      x = i + 1;
-    }
   }
-
-  return 0;
+  if (input[i] == '\0') {
+    cout << endl;//最后输出换行符
+    return 0;
+  }
 }
